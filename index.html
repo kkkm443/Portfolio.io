@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이광민 — Product Planner Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080f;--surface:#0f0f1a;--border:rgba(255,255,255,.07);--text:#e8e8f0;--muted:#6b6b88;--a1:#4a7bff;--a2:#7b5cf0;--a3:#ff6b35;--a4:#00c896;--w:#fff}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--a1);border-radius:2px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(8,8,15,.96),transparent);backdrop-filter:blur(8px)}
+.nav-logo{font-family:'Bebas Neue',cursive;font-size:22px;letter-spacing:3px;color:var(--w)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--w)}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 60px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 60% at 70% 40%,rgba(74,123,255,.12) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 70%,rgba(123,92,240,.08) 0%,transparent 60%)}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-label{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--a1);text-transform:uppercase;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-label::before{content:'';display:block;width:28px;height:1px;background:var(--a1)}
+.hero-name{font-family:'Bebas Neue',cursive;font-size:clamp(72px,10vw,140px);line-height:.92;letter-spacing:-2px;color:var(--w);opacity:0;animation:fadeUp .8s .4s forwards}
+.hero-name span{color:var(--a1)}
+.hero-desc{margin-top:32px;font-size:15px;font-weight:300;color:var(--muted);max-width:560px;line-height:1.9;opacity:0;animation:fadeUp .8s .6s forwards}
+.hero-stats{display:flex;gap:48px;margin-top:56px;padding-top:40px;border-top:1px solid var(--border);opacity:0;animation:fadeUp .8s .8s forwards}
+.stat-num{font-family:'Bebas Neue',cursive;font-size:48px;line-height:1;color:var(--w)}
+.stat-num span{color:var(--a1);font-size:26px}
+.stat-label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:6px}
+.scroll-cue{position:absolute;bottom:40px;left:60px;z-index:1;display:flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;opacity:0;animation:fadeUp .8s 1.2s forwards}
+.scroll-line{width:40px;height:1px;background:linear-gradient(to right,var(--a1),transparent);animation:scrollPulse 2s ease-in-out infinite}
+
+section{padding:100px 60px}
+.section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--a1);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:0 0 32px;height:1px;background:var(--a1)}
+.section-title{font-family:'Bebas Neue',cursive;font-size:clamp(42px,6vw,80px);line-height:.95;letter-spacing:-1px;color:var(--w);margin-bottom:16px}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:60px;align-items:start}
+.about-left p{font-size:14px;color:var(--muted);line-height:2;margin-bottom:20px}
+.about-left p strong{color:var(--text);font-weight:500}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.skill-card{background:var(--surface);border:1px solid var(--border);padding:20px;transition:border-color .2s,transform .2s}
+.skill-card:hover{border-color:var(--a1);transform:translateY(-2px)}
+.skill-icon{font-size:22px;margin-bottom:10px}
+.skill-title{font-size:12px;font-weight:700;color:var(--w);letter-spacing:.5px;margin-bottom:6px}
+.skill-desc{font-size:11px;color:var(--muted);line-height:1.7}
+
+.overview-table{width:100%;margin-top:50px;border-collapse:collapse;font-size:13px}
+.overview-table th{text-align:left;padding:14px 20px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);font-weight:500}
+.overview-table td{padding:18px 20px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6;color:var(--text);font-weight:300}
+.overview-table tr:hover td{background:rgba(74,123,255,.04)}
+.proj-badge{display:inline-block;padding:3px 10px;font-size:10px;font-weight:700;letter-spacing:1px;border-radius:2px;text-transform:uppercase;margin-bottom:6px}
+.badge-blue{background:rgba(74,123,255,.2);color:#6b9fff}
+.badge-purple{background:rgba(123,92,240,.2);color:#a98bff}
+.badge-orange{background:rgba(255,107,53,.2);color:#ff8a5e}
+.badge-teal{background:rgba(0,200,150,.2);color:#2de0b0}
+.kpi-pill{display:inline-block;background:rgba(0,200,150,.1);color:var(--a4);border:1px solid rgba(0,200,150,.2);padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;border-radius:2px}
+
+#projects{padding-top:0}
+.project-block{padding:100px 60px;position:relative;overflow:hidden;border-top:1px solid var(--border)}
+.project-block::before{content:attr(data-num);position:absolute;top:60px;right:60px;font-family:'Bebas Neue',cursive;font-size:180px;line-height:1;color:rgba(255,255,255,.02);pointer-events:none;user-select:none;letter-spacing:-4px}
+.project-inner{max-width:1100px;margin:0 auto}
+.project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;margin-bottom:60px}
+.project-header-left{flex:1}
+.project-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.project-name{font-family:'Bebas Neue',cursive;font-size:clamp(48px,6vw,80px);line-height:.95;letter-spacing:-1px;color:var(--w);margin-bottom:12px}
+.project-subtitle{font-size:14px;color:var(--muted);max-width:520px;line-height:1.8}
+.project-meta{display:flex;flex-direction:column;gap:16px;min-width:200px}
+.meta-item{text-align:right}
+.meta-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.meta-value{font-size:13px;color:var(--text);font-weight:500}
+.project-body{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.project-col-full{grid-column:1/-1}
+.info-block{margin-bottom:36px}
+.info-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.info-label::before{content:'';display:block;width:16px;height:1px;background:currentColor}
+.info-text{font-size:14px;color:var(--text);line-height:1.9;font-weight:300}
+.info-list{list-style:none}
+.info-list li{font-size:13px;color:var(--text);padding:10px 0;border-bottom:1px solid var(--border);padding-left:16px;position:relative;line-height:1.7}
+.info-list li::before{content:'→';position:absolute;left:0;color:var(--muted);font-size:11px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.feature-card{background:var(--surface);border:1px solid var(--border);padding:22px;transition:border-color .25s,transform .25s}
+.feature-card:hover{transform:translateY(-3px)}
+.feature-card-icon{font-size:24px;margin-bottom:12px}
+.feature-card-title{font-size:12px;font-weight:700;color:var(--w);margin-bottom:8px;letter-spacing:.3px}
+.feature-card-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.kpi-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:8px}
+.kpi-card{flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center}
+.kpi-val{font-family:'Bebas Neue',cursive;font-size:38px;line-height:1;margin-bottom:6px}
+.kpi-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.insight-box{background:linear-gradient(135deg,rgba(74,123,255,.08),rgba(123,92,240,.04));border:1px solid rgba(74,123,255,.2);padding:28px;margin-top:8px;position:relative}
+.insight-box::before{content:'"';position:absolute;top:10px;left:20px;font-family:'Bebas Neue',cursive;font-size:60px;color:rgba(74,123,255,.2);line-height:1}
+.insight-text{font-size:14px;color:var(--text);line-height:1.9;font-weight:400;padding-left:12px}
+
+/* ── PROTOTYPE EMBED ── */
+.proto-section{margin-top:48px}
+.proto-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.proto-open-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--w);text-decoration:none;border:1px solid var(--border);background:var(--surface);transition:border-color .2s,background .2s,transform .2s}
+.proto-open-btn:hover{transform:translateY(-2px)}
+.proto-open-btn svg{width:13px;height:13px;flex-shrink:0}
+.proto-browser{border:1px solid var(--border);background:var(--surface);overflow:hidden}
+.proto-bar{display:flex;align-items:center;gap:7px;padding:9px 14px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#ffbd2e}.dot-g{background:#28ca41}
+.proto-url-bar{flex:1;margin-left:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:3px 10px;border-radius:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proto-iframe{width:100%;height:600px;border:none;display:block;background:#fff}
+
+/* project colours */
+.proj-ringle .project-tag{color:var(--a4)}.proj-ringle .feature-card:hover{border-color:var(--a4)}.proj-ringle .kpi-val{color:var(--a4)}.proj-ringle .proto-open-btn:hover{border-color:var(--a4);background:rgba(0,200,150,.08)}
+.proj-recover .project-tag{color:var(--a2)}.proj-recover .feature-card:hover{border-color:var(--a2)}.proj-recover .kpi-val{color:var(--a2)}.proj-recover .insight-box{background:linear-gradient(135deg,rgba(123,92,240,.08),rgba(74,123,255,.04));border-color:rgba(123,92,240,.25)}.proj-recover .proto-open-btn:hover{border-color:var(--a2);background:rgba(123,92,240,.08)}
+.proj-ai .project-tag{color:var(--a3)}.proj-ai .feature-card:hover{border-color:var(--a3)}.proj-ai .kpi-val{color:var(--a3)}.proj-ai .insight-box{background:linear-gradient(135deg,rgba(255,107,53,.08),rgba(255,107,53,.03));border-color:rgba(255,107,53,.2)}.proj-ai .proto-open-btn:hover{border-color:var(--a3);background:rgba(255,107,53,.08)}
+.proj-lifeport .project-tag{color:var(--a1)}.proj-lifeport .feature-card:hover{border-color:var(--a1)}.proj-lifeport .kpi-val{color:var(--a1)}.proj-lifeport .proto-open-btn:hover{border-color:var(--a1);background:rgba(74,123,255,.08)}
+
+/* capabilities */
+#capabilities{background:var(--surface)}
+.cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-top:60px;border:1px solid var(--border)}
+.cap-card{background:var(--surface);padding:44px;transition:background .3s}
+.cap-card:hover{background:rgba(74,123,255,.05)}
+.cap-num{font-family:'Bebas Neue',cursive;font-size:52px;line-height:1;color:rgba(74,123,255,.25);margin-bottom:16px}
+.cap-title{font-size:15px;font-weight:700;color:var(--w);margin-bottom:14px}
+.cap-desc{font-size:13px;color:var(--muted);line-height:1.9}
+
+/* personal */
+#personal{border-top:1px solid var(--border)}
+.personal-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;margin-top:60px;align-items:start}
+.personal-avatar{width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,rgba(74,123,255,.15),rgba(0,200,150,.08));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:120px;color:rgba(74,123,255,.15);position:relative;overflow:hidden}
+.personal-avatar::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,15,.65),transparent 50%)}
+.personal-name-block{position:absolute;bottom:28px;left:28px;z-index:1}
+.personal-name-ko{font-family:'Noto Sans KR',sans-serif;font-size:32px;font-weight:900;color:var(--w);line-height:1.1;letter-spacing:-1px}
+.personal-name-en{font-family:'DM Mono',monospace;font-size:11px;color:var(--a1);letter-spacing:2px;margin-top:4px}
+.personal-role-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--a4);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.personal-role-tag::before{content:'';display:block;width:20px;height:1px;background:var(--a4)}
+.personal-headline{font-size:22px;font-weight:700;color:var(--w);line-height:1.5;margin-bottom:24px}
+.personal-bio{font-size:14px;color:var(--muted);line-height:2;margin-bottom:36px}
+.personal-bio strong{color:var(--text);font-weight:500}
+.personal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.personal-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;padding:6px 14px;border:1px solid var(--border);color:var(--muted);background:var(--surface)}
+.personal-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pstat{border:1px solid var(--border);padding:20px;text-align:center}
+.pstat-num{font-family:'Bebas Neue',cursive;font-size:36px;color:var(--a1);line-height:1;margin-bottom:6px}
+.pstat-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+
+footer{padding:60px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Bebas Neue',cursive;font-size:28px;letter-spacing:3px;color:var(--muted)}
+.footer-quote{font-size:12px;color:var(--muted);max-width:360px;line-height:1.7;text-align:center}
+.footer-copy{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{width:40px;opacity:.5}50%{width:60px;opacity:1}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.divider{height:1px;background:var(--border);margin:0 60px}
+
+@media(max-width:900px){nav{padding:16px 24px}.nav-links{display:none}section,.hero,.project-block{padding:60px 24px}.about-grid,.project-body,.personal-wrap{grid-template-columns:1fr}.project-header{flex-direction:column}.feature-grid{grid-template-columns:1fr 1fr}.hero-stats{flex-wrap:wrap;gap:28px}.cap-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:20px;text-align:center}.project-block::before{display:none}.meta-item{text-align:left}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">이광민</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#overview">Projects</a></li>
+    <li><a href="#capabilities">역량</a></li>
+    <li><a href="#personal">Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-label">Product / Service Planner Portfolio · 이광민</div>
+    <div class="hero-name">PRODUCT<br><span>PLANNER</span><br>PORTFOLIO</div>
+    <p class="hero-desc">문제를 구조적으로 정의하고 데이터와 기술을 통해<br>사용자 가치로 번역하는 기획자 <strong style="color:var(--text)">이광민</strong>의 포트폴리오입니다.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">4<span>개</span></div>
+        <div class="stat-label">핵심 프로젝트</div>
+      </div>
+      <div>
+        <div class="stat-num">90<span>%</span></div>
+        <div class="stat-label">비용 절감 설계</div>
+      </div>
+      <div>
+        <div class="stat-num">FINAL<span></span></div>
+        <div class="stat-label">링글 공모전 진출</div>
+      </div>
+      <div>
+        <div class="stat-num">4<span>개</span></div>
+        <div class="stat-label">직접 구현한 프로토타입</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    SCROLL TO EXPLORE
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="section-title">WHO<br>I AM</div>
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <p><strong>데이터 기반의 미충족 니즈 발굴:</strong> 정량적 분석과 정성적 인터뷰를 결합하여 표면적 불편함 이면에 있는 사용자의 근본적인 문제와 시장의 빈틈을 정의합니다.</p>
+      <p><strong>복잡한 문제를 직관적인 UX로 구조화:</strong> 파편화된 데이터와 다변수 리스크(금융, 보안 등)를 사용자 친화적인 진단 및 실행 경험으로 번역하는 정보 구조화 역량을 갖추고 있습니다.</p>
+      <p><strong>AI/Data 기술의 비즈니스 가치 전환:</strong> RAG, 보이스 클로닝, 마이데이터 등 최신 기술을 단순한 '기능'이 아닌, 실질적 비용 절감과 성과 창출을 돕는 '서비스 운영 모델'로 연결합니다.</p>
+      <p><strong>기획을 직접 코드로 구현:</strong> 아이디어를 실제로 작동하는 프로토타입으로 검증하는 개발 역량을 보유. 기획과 구현 사이의 간극을 직접 메웁니다.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-card"><div class="skill-icon">🔍</div><div class="skill-title">Problem Definition</div><div class="skill-desc">데이터와 인터뷰를 결합한 구조적 문제 정의 및 시장 분석</div></div>
+      <div class="skill-card"><div class="skill-icon">🗺️</div><div class="skill-title">UX / Journey Map</div><div class="skill-desc">페르소나 기반 고객여정지도 및 서비스 플로우 설계</div></div>
+      <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-title">AI Feature Design</div><div class="skill-desc">RAG, 보이스클로닝, 마이데이터 등 AI 기술의 서비스화</div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-title">Data Analysis</div><div class="skill-desc">공공·금융 데이터 기반 가설 검증 및 인사이트 도출</div></div>
+      <div class="skill-card"><div class="skill-icon">💼</div><div class="skill-title">B2B SaaS Design</div><div class="skill-desc">기업용 대시보드 및 관리자 시스템 구조 설계</div></div>
+      <div class="skill-card"><div class="skill-icon">💻</div><div class="skill-title">Prototype Dev</div><div class="skill-desc">기획 아이디어를 직접 코드로 구현·검증하는 프로토타이핑</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<div class="divider"></div>
+<section id="overview">
+  <div class="section-label">All Projects</div>
+  <div class="section-title">PROJECT<br>OVERVIEW</div>
+  <table class="overview-table reveal">
+    <thead><tr><th>Project</th><th>Domain</th><th>Problem</th><th>Key Solution</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="proj-badge badge-teal">01</div><br><strong style="color:var(--w)">Ringle Biz</strong><br><span style="font-size:11px;color:var(--muted)">공모전 본선 진출</span></td>
+        <td><span style="font-size:12px;color:var(--muted)">에듀테크 / AI</span></td>
+        <td style="font-size:12px">일상 회화 중심 콘텐츠로 비즈니스 실무 영어 니즈 충족 한계</td>
+        <td style="font-size:12px">직무 문서 기반 RAG 학습 + Executive 코칭 모델 설계</td>
+        <td><span class="kpi-pill">SOM 연 2,000억</span></td>
+      </tr>
+      <tr>
+        <td><div class="proj-badge badge-purple">02</div><br><strong style="color:var(--w)">RE:COVER</strong><br><span style="font-size:11px;color:var(--muted)">B2B SaaS / EAP</span></td>
+        <td><span style="font-size:12px;color:var(--muted)">헬스케어 SaaS</span></td>
+        <td style="font-size:12px">사내 상담 낙인 우려(B2C) + 조직 위기 감지 지연(B2B)</td>
+        <td style="font-size:12px">Zero-Knowledge 익명성 + 관리자용 위기 감지 대시보드</td>
+        <td><span class="kpi-pill">TAM 61조원</span></td>
+      </tr>
+      <tr>
+        <td><div class="proj-badge badge-orange">03</div><br><strong style="color:var(--w)">AI 쇼핑 호스트</strong><br><span style="font-size:11px;color:var(--muted)">studio.ai</span></td>
+        <td><span style="font-size:12px;color:var(--muted)">이커머스 / AI SaaS</span></td>
+        <td style="font-size:12px">중소 셀러 마케팅 영상 제작·글로벌화 고비용 구조</td>
+        <td style="font-size:12px">URL 입력 → 스크립트 자동생성 → 아바타 영상 즉시 렌더링</td>
+        <td><span class="kpi-pill">비용 90% 절감</span></td>
+      </tr>
+      <tr>
+        <td><div class="proj-badge badge-blue">04</div><br><strong style="color:var(--w)">LifePort</strong><br><span style="font-size:11px;color:var(--muted)">핀테크 / 마이데이터</span></td>
+        <td><span style="font-size:12px;color:var(--muted)">금융 / 자산관리</span></td>
+        <td style="font-size:12px">파편화된 금융 정보로 인한 자산 상태 및 은퇴 계획 가시성 부족</td>
+        <td style="font-size:12px">마이데이터 기반 생애 자산 시뮬레이션 + AI 수명 예측</td>
+        <td><span class="kpi-pill">1,040만명 TAM</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ PROJECT 1: RINGLE ═══ -->
+<div id="projects"></div>
+<div class="project-block proj-ringle" data-num="01">
+  <div class="project-inner">
+    <div class="project-header reveal">
+      <div class="project-header-left">
+        <div class="project-tag">01 — EdTech / AI Learning</div>
+        <div class="project-name">RINGLE<br>BIZ</div>
+        <div class="project-subtitle">직장인의 비즈니스 영어 실력 향상을 위한 AI·원어민 튜터 기반의 Executive 코칭 플랫폼. 링글 서비스 기획 공모전 <strong style="color:var(--a4)">본선 진출</strong>.</div>
+      </div>
+      <div class="project-meta">
+        <div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">에듀테크 / AI SaaS</div></div>
+        <div class="meta-item"><div class="meta-label">Target</div><div class="meta-value">글로벌 지향 직장인</div></div>
+        <div class="meta-item"><div class="meta-label">Achievement</div><div class="meta-value" style="color:var(--a4)">공모전 본선 진출</div></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="reveal">
+        <div class="info-block">
+          <div class="info-label">Problem</div>
+          <div class="info-text">기존 링글 서비스는 일상 회화 중심이라 비즈니스 실무 영어 니즈를 충족하기 어려웠습니다. 직장인의 77%가 업무 영어에 한계를 느끼지만 실제 직무 문서 기반의 심화 학습 경험을 제공하지 못했습니다.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Research Insight</div>
+          <div class="info-text">직장인의 학습 동기는 '재미'가 아닌 <strong style="color:var(--w)">'성과와 생존'</strong>임을 데이터로 검증. 80%가 업무 기반 AI 기능에 추가 지불 의사를 보이며 Executive 코칭 모델로 포지셔닝했습니다.</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="info-block">
+          <div class="info-label">Target & Market</div>
+          <ul class="info-list">
+            <li>글로벌 업무 기회를 원하는 2040 직장인</li>
+            <li>해외 팀과 협업하는 IT·금융·컨설팅 종사자</li>
+            <li>SOM — 국내 67만 명 (연 2,000억 원)</li>
+            <li>전환율 목표 20% / 4주 리텐션 55%↑</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="info-label">Core Features</div>
+        <div class="feature-grid">
+          <div class="feature-card"><div class="feature-card-icon">📄</div><div class="feature-card-title">RAG 기반 직무 학습</div><div class="feature-card-desc">업무 문서(이메일·보고서·계약서)를 업로드하면 AI가 직무 맞춤 학습 시나리오를 자동 생성합니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🎙️</div><div class="feature-card-title">Executive 코칭 모드</div><div class="feature-card-desc">원어민 튜터와의 1:1 롤플레이로 프레젠테이션·협상·보고 등 실전 비즈니스 상황을 반복 연습합니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">💬</div><div class="feature-card-title">실시간 AI 피드백</div><div class="feature-card-desc">발화 즉시 문법·어휘·뉘앙스를 분석하고 직업군별 맞춤 피드백과 표현 대안을 제시합니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🚇</div><div class="feature-card-title">출퇴근길 무발화 예습</div><div class="feature-card-desc">이동 중에도 학습 가능한 리스닝·쉐도잉 모드로 학습 지속성을 확보합니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🏆</div><div class="feature-card-title">직군별 학습 랭킹</div><div class="feature-card-desc">같은 직군 내 학습자 비교 랭킹으로 경쟁 동기를 부여하고 리텐션을 높입니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🎯</div><div class="feature-card-title">실전 리허설 기능</div><div class="feature-card-desc">발표·면접·회의 시나리오를 사전에 연습하고 AI 평가 점수와 개선안을 확인합니다.</div></div>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="info-label">Planning Point</div>
+        <div class="insight-box" style="border-color:rgba(0,200,150,.2);background:linear-gradient(135deg,rgba(0,200,150,.06),rgba(0,200,150,.02))">
+          <div class="insight-text">단순한 영어 점수 향상이 아닌, 유저가 영어를 배우려는 근본적인 <em>Why</em>(성과·진급·글로벌 기회)에 집중하여 Performance-driven Executive 코칭 모델로 기획을 차별화했습니다.</div>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="proto-section">
+          <div class="proto-header">
+            <div class="info-label" style="margin-bottom:0">Live Prototype — 직접 조작해보세요</div>
+            <a href="https://kkkm443.github.io/RingleAI.io/" target="_blank" class="proto-open-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              새 탭에서 열기
+            </a>
+          </div>
+          <div class="proto-browser">
+            <div class="proto-bar">
+              <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+              <div class="proto-url-bar">kkkm443.github.io/RingleAI.io/</div>
+            </div>
+            <iframe class="proto-iframe" src="https://kkkm443.github.io/RingleAI.io/" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROJECT 2: RE:COVER ═══ -->
+<div class="project-block proj-recover" data-num="02">
+  <div class="project-inner">
+    <div class="project-header reveal">
+      <div class="project-header-left">
+        <div class="project-tag">02 — B2B SaaS / Mental Health EAP</div>
+        <div class="project-name">RE:<br>COVER</div>
+        <div class="project-subtitle">직장인 정신건강 케어를 위해 익명성·즉시성·조직 대응 체계를 함께 설계한 AI·전문가 결합형 사내 회복 지원 플랫폼.</div>
+      </div>
+      <div class="project-meta">
+        <div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">B2B SaaS / EAP</div></div>
+        <div class="meta-item"><div class="meta-label">Target</div><div class="meta-value">직장인 + 기업 HR</div></div>
+        <div class="meta-item"><div class="meta-label">Market</div><div class="meta-value" style="color:var(--a2)">TAM 61조 / SOM 3천억</div></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="reveal">
+        <div class="info-block">
+          <div class="info-label">Dual Problem</div>
+          <div class="info-text"><strong style="color:var(--w)">B2C:</strong> 낙인 우려(인사 불이익)·보안 불신으로 상담 기피. 직장인 10명 중 7명 번아웃 경험, 90%는 그냥 참음.<br><br><strong style="color:var(--w)">B2B:</strong> 조직은 집단 스트레스 신호나 위기 상황을 사전 파악하기 어려워 퇴사·사고 후 수습만 가능.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Data Backed</div>
+          <ul class="info-list">
+            <li>정신질환 산재승인 9년간 10배 이상 증가</li>
+            <li>88.7%가 정신건강 치료 기록이 취업에 불이익이라 인식</li>
+            <li>EAP 상담 후 비생산 시간 57h → 16h 급감</li>
+            <li>EAP 사용 후 79%가 정상 범주로 정신건강 회복</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="info-block">
+          <div class="info-label">Key Differentiation</div>
+          <ul class="info-list">
+            <li>Zero-Knowledge Proof — DB에 IP조차 남지 않는 완벽 익명</li>
+            <li>실시간 웨어러블(HRV) 스트레스 지수 연동</li>
+            <li>AI 24/7 상담 + 전문가 연계 하이브리드 케어</li>
+            <li>관리자용 익명 집계 대시보드로 조직 인사이트</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Business Model</div>
+          <ul class="info-list">
+            <li>임직원 1인당 월 11,500원 B2B 구독</li>
+            <li>AI 외 전문가 상담권 추가 판매</li>
+            <li>프리미엄 관리자 대시보드 고급 플랜</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="info-label">Service Architecture</div>
+        <div class="feature-grid">
+          <div class="feature-card"><div class="feature-card-icon">🔒</div><div class="feature-card-title">Zero-Knowledge 보안</div><div class="feature-card-desc">AES-256 + Zero-Knowledge 기반으로 DB에 개인식별정보가 전혀 남지 않는 구조.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">📡</div><div class="feature-card-title">웨어러블 실시간 감지</div><div class="feature-card-desc">Galaxy Watch 등과 연동, HRV 심박·수면 데이터로 스트레스 지수를 객관화합니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🤖</div><div class="feature-card-title">AI + 전문가 하이브리드</div><div class="feature-card-desc">AI 24/7 상담 후 필요 시 임상심리전문가에게 즉시 연결. 위기 징후 감지 시 자살예방 핫라인 자동 연결.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">📊</div><div class="feature-card-title">관리자 대시보드</div><div class="feature-card-desc">팀별 스트레스 지수 비교, 실시간 리스크 레이더, 월간 조직 멘탈 헬스 리포트로 HR 의사결정 지원.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🌲</div><div class="feature-card-title">익명 대나무 숲</div><div class="feature-card-desc">직원들이 익명으로 심리적 고충을 공유하고 공감받는 커뮤니티 기능.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">📈</div><div class="feature-card-title">AI 위클리 인사이트</div><div class="feature-card-desc">주간 스트레스 추이, 원인 분석(업무과부하·대인관계·수면부족), 맞춤 케어 권고 제공.</div></div>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="info-label">Planning Point</div>
+        <div class="insight-box">
+          <div class="insight-text">B2B 사내 복지가 실패하는 가장 큰 이유인 '직원들의 불신'을 Zero-Knowledge Proof로 기술적으로 구조화했습니다. 기록이 남을까봐 두려워하는 직원의 심리와 빠른 위기 감지가 필요한 기업의 입장을 동시에 충족시키는 구조를 설계했습니다.</div>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="proto-section">
+          <div class="proto-header">
+            <div class="info-label" style="margin-bottom:0">Live Prototype — 직접 조작해보세요</div>
+            <a href="https://kkkm443.github.io/ReCover.io/" target="_blank" class="proto-open-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              새 탭에서 열기
+            </a>
+          </div>
+          <div class="proto-browser">
+            <div class="proto-bar">
+              <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+              <div class="proto-url-bar">kkkm443.github.io/ReCover.io/</div>
+            </div>
+            <iframe class="proto-iframe" src="https://kkkm443.github.io/ReCover.io/" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROJECT 3: AI SHOPPING HOST ═══ -->
+<div class="project-block proj-ai" data-num="03">
+  <div class="project-inner">
+    <div class="project-header reveal">
+      <div class="project-header-left">
+        <div class="project-tag">03 — E-Commerce / AI SaaS</div>
+        <div class="project-name">AI<br>SHOPPING<br>HOST</div>
+        <div class="project-subtitle">AI 아바타와 다국어 보이스 클로닝으로 중소 셀러의 영상 제작 비용을 획기적으로 낮추고 글로벌 판매를 돕는 이커머스 자동화 SaaS.</div>
+      </div>
+      <div class="project-meta">
+        <div class="meta-item"><div class="meta-label">Product</div><div class="meta-value">studio.ai</div></div>
+        <div class="meta-item"><div class="meta-label">Target</div><div class="meta-value">SMB 커머스 셀러</div></div>
+        <div class="meta-item"><div class="meta-label">Cost Reduction</div><div class="meta-value" style="color:var(--a3)">90% 비용 절감</div></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="reveal">
+        <div class="info-block">
+          <div class="info-label">Problem Structure</div>
+          <div class="info-text">이커머스 영상 마케팅의 중요성이 커지고 있으나 SMB 셀러들은 쇼호스트 섭외·촬영·편집·언지 현지화 등의 높은 고정비로 콘텐츠를 지속 생산하기 어려운 구조적 한계에 직면합니다.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Cost Comparison</div>
+          <ul class="info-list">
+            <li>기존 방식 — 쇼호스트 + 촬영 + 편집 : 300~500만원/편</li>
+            <li>studio.ai — AI 아바타 + 보이스클로닝 : 5분 이내 완료</li>
+            <li>30개 이상 언어 자동 현지화로 글로벌 즉시 진출</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="info-block">
+          <div class="info-label">Business Model</div>
+          <ul class="info-list">
+            <li>Basic — 월 19,900원 (영상 20편/월)</li>
+            <li>Pro — 월 49,900원 (무제한 + 다국어)</li>
+            <li>Enterprise — 커스텀 아바타 + API 연동</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Target KPIs</div>
+          <ul class="info-list">
+            <li>최초 유료 전환율 10% 이상</li>
+            <li>재구독 비율 40%</li>
+            <li>월간 영상 생성 20만 개</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="info-label">Zero-Effort Production Pipeline</div>
+        <div class="feature-grid">
+          <div class="feature-card"><div class="feature-card-icon">🔗</div><div class="feature-card-title">URL 입력 → 자동 분석</div><div class="feature-card-desc">상품 URL만 입력하면 AI가 상세 페이지를 분석해 판매 포인트를 추출하고 최적 스크립트를 자동 생성합니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🎭</div><div class="feature-card-title">AI 아바타 + 보이스클로닝</div><div class="feature-card-desc">프리셋 아바타 선택 또는 본인 목소리 3분 학습 후 30개 이상 언어의 자연스러운 보이스 클로닝으로 즉시 영상 생성.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">⚡</div><div class="feature-card-title">5분 이내 렌더링</div><div class="feature-card-desc">스크립트 확정 후 AI 렌더링으로 5분 이내 완성된 마케팅 영상을 다운로드하거나 플랫폼에 직접 업로드합니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🌍</div><div class="feature-card-title">글로벌 현지화</div><div class="feature-card-desc">하나의 영상을 30개 이상 언어로 즉시 변환. 자막·더빙·립싱크 자동 처리로 글로벌 마켓 즉시 진출 가능.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">📺</div><div class="feature-card-title">24/7 AI 라이브 에이전트</div><div class="feature-card-desc">AI 쇼호스트가 24시간 라이브 판매를 자동으로 진행. 고객 질문 실시간 응답 및 구매 유도.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">📊</div><div class="feature-card-title">성과 최적화 대시보드</div><div class="feature-card-desc">영상별 조회수·클릭률·전환율 분석으로 고성과 콘텐츠 패턴을 학습하고 다음 스크립트에 자동 반영.</div></div>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="info-label">Planning Point</div>
+        <div class="insight-box">
+          <div class="insight-text">단순한 '가상 인간 생성 툴'에 머무는 것이 아니라, 상품 등록부터 글로벌 송출, 성과 분석까지 이어지는 <em>'이커머스 판매 운영 자동화 SaaS'</em> 관점으로 비즈니스를 확장하여 기획했습니다.</div>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="proto-section">
+          <div class="proto-header">
+            <div class="info-label" style="margin-bottom:0">Live Prototype — 직접 조작해보세요</div>
+            <a href="https://kkkm443.github.io/shop.io/" target="_blank" class="proto-open-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              새 탭에서 열기
+            </a>
+          </div>
+          <div class="proto-browser">
+            <div class="proto-bar">
+              <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+              <div class="proto-url-bar">kkkm443.github.io/shop.io/</div>
+            </div>
+            <iframe class="proto-iframe" src="https://kkkm443.github.io/shop.io/" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROJECT 4: LIFEPORT ═══ -->
+<div class="project-block proj-lifeport" data-num="04">
+  <div class="project-inner">
+    <div class="project-header reveal">
+      <div class="project-header-left">
+        <div class="project-tag">04 — FinTech / MyData / Retirement</div>
+        <div class="project-name">LIFE<br>PORT</div>
+        <div class="project-subtitle">마이데이터 연동과 AI 생애 자산 시뮬레이션을 결합해 개인 재무 상태 진단 및 노후 실행 계획을 제안하는 자산 수명 연장 서비스.</div>
+      </div>
+      <div class="project-meta">
+        <div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">핀테크 / 마이데이터</div></div>
+        <div class="meta-item"><div class="meta-label">Target</div><div class="meta-value">2040 직장인·프리랜서</div></div>
+        <div class="meta-item"><div class="meta-label">Key Value</div><div class="meta-value" style="color:var(--a1)">자산 수명 연장</div></div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="reveal">
+        <div class="info-block">
+          <div class="info-label">Problem + Data</div>
+          <div class="info-text">노후 준비 의향은 70%이나 그 중 58.5%가 국민연금뿐. 파편화된 금융 정보로 "현재 내 자산이 평균 대비 어떤지", "안정적인 은퇴를 위해 지금 무엇을 해야 하는지"를 직관적으로 알기 어렵습니다.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Research Insights</div>
+          <ul class="info-list">
+            <li>노후준비 관심도 2025년 역대 최고치 달성</li>
+            <li>소득 200~400만원 구간 노후준비 관심 약 30%p 급증</li>
+            <li>자산관리 미흡 이유 1위: '어떻게 관리해야 할지 몰라서' 28.9%</li>
+            <li>1인가구 비상자금 마련 욕구 38.5%</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="info-block">
+          <div class="info-label">Business Model</div>
+          <ul class="info-list">
+            <li>Basic — 연 11,800원 (월 990원)</li>
+            <li>Pro — 연 58,800원 (월 4,900원)</li>
+            <li>중개 수수료 — 금융상품 거래액의 5~15%</li>
+            <li>리포트/API 과금 + 보험·금융사 연계 광고</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <div class="info-label">2029 Goals</div>
+          <ul class="info-list">
+            <li>누적 자산 수명 연장 150M개월 (12만 가입자)</li>
+            <li>주간 리포트 확인 비율 52%</li>
+            <li>고객 만족도(노후 불안 해소) 86%</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="info-label">Core Service Architecture</div>
+        <div class="feature-grid">
+          <div class="feature-card"><div class="feature-card-icon">🔗</div><div class="feature-card-title">마이데이터 통합</div><div class="feature-card-desc">여러 금융기관 계좌를 자동 연동해 자산·부채·소비 구조를 한눈에 파악하고 정확한 재무 현황을 제공.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🤖</div><div class="feature-card-title">AI 자산 수명 예측</div><div class="feature-card-desc">"당신의 돈은 86세에 사망합니다" — 금융 사망 나이를 시각화하고 구체적 개선 전략을 제안.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">📈</div><div class="feature-card-title">생애 이벤트 시뮬레이션</div><div class="feature-card-desc">결혼·출산·이직·주택 구입 등 생애 이벤트를 입력하면 자산 수명 변화와 대응 전략을 즉시 시뮬레이션.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🎯</div><div class="feature-card-title">맞춤 자산관리 전략</div><div class="feature-card-desc">개인 상황에 따른 맞춤형 투자상품 추천, 리밸런싱 전략 제안, 비상자금 마련 로드맵을 제공합니다.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">👥</div><div class="feature-card-title">동년배 비교 분석</div><div class="feature-card-desc">같은 나이, 소득, 직군의 동년배 평균 자산 및 노후 준비 수준과 비교하는 객관적 지표를 제공.</div></div>
+          <div class="feature-card"><div class="feature-card-icon">🏦</div><div class="feature-card-title">전문가 컨설팅 연결</div><div class="feature-card-desc">AI 분석 이상의 심층 상담이 필요할 때 자산 운용 전문가와 1:1 연결하는 하이브리드 운영.</div></div>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="info-label">Planning Point</div>
+        <div class="insight-box">
+          <div class="insight-text">마이데이터를 이용해 단순히 흩어진 자산을 '보여주는' 것에 그치지 않고, 진단과 시뮬레이션을 통해 사용자의 <em>'내일의 금융 행동'</em>을 바꾸는 의사결정 지원 도구로 발전시킨 점이 핵심입니다. '금융 사망 나이'라는 심리적 트리거로 막연한 불안을 정량화하여 즉각적 행동을 유도합니다.</div>
+        </div>
+      </div>
+      <div class="project-col-full reveal">
+        <div class="proto-section">
+          <div class="proto-header">
+            <div class="info-label" style="margin-bottom:0">Live Prototype — 직접 조작해보세요</div>
+            <a href="https://kkkm443.github.io/LifePort.com/" target="_blank" class="proto-open-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              새 탭에서 열기
+            </a>
+          </div>
+          <div class="proto-browser">
+            <div class="proto-bar">
+              <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+              <div class="proto-url-bar">kkkm443.github.io/LifePort.com/</div>
+            </div>
+            <iframe class="proto-iframe" src="https://kkkm443.github.io/LifePort.com/" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="section-label">Core Competencies</div>
+  <div class="section-title">PLANNING<br>CAPABILITY</div>
+  <div class="cap-grid reveal">
+    <div class="cap-card">
+      <div class="cap-num">01</div>
+      <div class="cap-title">문제를 '구조'로 정의하는 능력</div>
+      <div class="cap-desc">표면적인 불편함 개선을 넘어, 이커머스의 고비용 구조나 사내 복지의 근본적 불신 등 비즈니스 구조 자체의 병목을 해결하는 솔루션을 설계합니다.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-num">02</div>
+      <div class="cap-title">정량/정성 데이터 결합 인사이트 도출</div>
+      <div class="cap-desc">대규모 공공 통계 데이터와 유저 심층 인터뷰를 병행하여, 데이터가 지목하는 현상과 인간의 실제 맥락(심리적 허들)을 연결해 날카로운 기획의 기준점을 세웁니다.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-num">03</div>
+      <div class="cap-title">AI/Data 기술을 사용자 가치(UX)로 번역</div>
+      <div class="cap-desc">RAG, 보이스 클로닝, 마이데이터 시뮬레이션 등 고도화된 기술을 유저가 가장 쉽고 직관적으로 이익을 얻을 수 있는 서비스 시나리오로 변환합니다.</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-num">04</div>
+      <div class="cap-title">기획을 직접 구현하는 프로토타이핑</div>
+      <div class="cap-desc">기획 아이디어를 실제 작동하는 프로토타입으로 직접 구현하고 검증. 기획과 구현 사이의 간극을 줄이고 빠른 피드백 루프를 형성합니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL -->
+<section id="personal">
+  <div class="section-label">About Me</div>
+  <div class="section-title">이광민</div>
+  <div class="personal-wrap">
+    <div class="personal-avatar-wrap reveal">
+      <div class="personal-avatar">
+        이
+        <div class="personal-name-block">
+          <div class="personal-name-ko">이광민</div>
+          <div class="personal-name-en">LEE GWANG MIN</div>
+        </div>
+      </div>
+    </div>
+    <div class="personal-right reveal">
+      <div class="personal-role-tag">Prototype MVP · Product Planner</div>
+      <div class="personal-headline">기획을 코드로 증명하는<br>프로덕트 기획자</div>
+      <p class="personal-bio">
+        데이터 분석에서 시작해 서비스 기획, 그리고 직접 프로토타입 개발까지 — 아이디어를 실제로 만질 수 있는 결과물로 구현하는 것을 중요하게 생각합니다.<br><br>
+        <strong>Team MVP</strong>에서 프로토타입 MVP를 담당하여 링글 Biz, RE:COVER, AI 쇼핑 호스트, LifePort 4개의 서비스를 직접 코드로 구현하고 검증했습니다.<br><br>
+        기획서 위에만 존재하는 서비스가 아닌, <strong>실제로 동작하는 서비스를 기획하고 구현</strong>하는 것이 목표입니다.
+      </p>
+      <div class="personal-tags">
+        <span class="personal-tag">Service Planning</span>
+        <span class="personal-tag">Prototype Dev</span>
+        <span class="personal-tag">UX Design</span>
+        <span class="personal-tag">Data Analysis</span>
+        <span class="personal-tag">B2B SaaS</span>
+        <span class="personal-tag">FinTech</span>
+        <span class="personal-tag">EdTech</span>
+        <span class="personal-tag">AI Product</span>
+      </div>
+      <div class="personal-stats">
+        <div class="pstat"><div class="pstat-num">4</div><div class="pstat-label">Projects</div></div>
+        <div class="pstat"><div class="pstat-num">4</div><div class="pstat-label">Prototypes Built</div></div>
+        <div class="pstat"><div class="pstat-num">본선</div><div class="pstat-label">링글 공모전</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">이광민</div>
+  <div class="footer-quote">치열한 데이터 분석과 사용자에 대한 깊은 공감으로 비즈니스 가치를 창출하겠습니다.</div>
+  <div class="footer-copy">© 2026 이광민 · Product Planner Portfolio</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(r => obs.observe(r));
+
+document.querySelectorAll('.feature-grid, .skills-grid, .kpi-row, .cap-grid, .personal-stats').forEach(grid => {
+  Array.from(grid.children).forEach((child, i) => {
+    child.style.transitionDelay = `${i * 60}ms`;
+  });
+});
+</script>
+</body>
+</html>
