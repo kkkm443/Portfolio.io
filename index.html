@@ -26,7 +26,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:fl
 .hero-label::before{content:'';display:block;width:28px;height:1px;background:var(--a1)}
 .hero-name{font-family:'Pretendard',sans-serif;font-size:clamp(72px,10vw,140px);line-height:.92;letter-spacing:-2px;color:var(--w);opacity:0;animation:fadeUp .8s .4s forwards}
 .hero-name span{color:var(--a1)}
-.hero-desc{margin-top:32px;font-size:15px;font-weight:300;color:var(--muted);max-width:560px;line-height:1.9;opacity:0;animation:fadeUp .8s .6s forwards}
+.hero-desc{margin-top:32px;font-size:17px;font-weight:300;color:var(--muted);max-width:560px;line-height:1.9;opacity:0;animation:fadeUp .8s .6s forwards}
 .hero-stats{display:flex;gap:48px;margin-top:56px;padding-top:40px;border-top:1px solid var(--border);opacity:0;animation:fadeUp .8s .8s forwards}
 .stat-num{font-family:'Pretendard',sans-serif;font-size:48px;line-height:1;color:var(--w)}
 .stat-num span{color:var(--a1);font-size:26px}
@@ -40,16 +40,16 @@ section{padding:100px 60px}
 .section-title{font-family:'Pretendard',sans-serif;font-size:clamp(42px,6vw,80px);line-height:.95;letter-spacing:-1px;color:var(--w);margin-bottom:16px}
 
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:60px;align-items:start}
-.about-left p{font-size:14px;color:var(--muted);line-height:2;margin-bottom:20px}
+.about-left p{font-size:16px;color:var(--muted);line-height:2;margin-bottom:20px}
 .about-left p strong{color:var(--text);font-weight:500}
 .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .skill-card{background:var(--surface);border:1px solid var(--border);padding:20px;transition:border-color .2s,transform .2s}
 .skill-card:hover{border-color:var(--a1);transform:translateY(-2px)}
 .skill-icon{font-size:22px;margin-bottom:10px}
-.skill-title{font-size:12px;font-weight:700;color:var(--w);letter-spacing:.5px;margin-bottom:6px}
-.skill-desc{font-size:11px;color:var(--muted);line-height:1.7}
+.skill-title{font-size:14px;font-weight:700;color:var(--w);letter-spacing:.5px;margin-bottom:6px}
+.skill-desc{font-size:13px;color:var(--muted);line-height:1.7}
 
-.overview-table{width:100%;margin-top:50px;border-collapse:collapse;font-size:13px}
+.overview-table{width:100%;margin-top:50px;border-collapse:collapse;font-size:15px}
 .overview-table th{text-align:left;padding:14px 20px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);font-weight:500}
 .overview-table td{padding:18px 20px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6;color:var(--text);font-weight:300}
 .overview-table tr:hover td{background:rgba(74,123,255,.04)}
@@ -68,33 +68,33 @@ section{padding:100px 60px}
 .project-header-left{flex:1}
 .project-tag{font-family:'Pretendard',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
 .project-name{font-family:'Pretendard',sans-serif;font-size:clamp(48px,6vw,80px);line-height:.95;letter-spacing:-1px;color:var(--w);margin-bottom:12px}
-.project-subtitle{font-size:14px;color:var(--muted);max-width:520px;line-height:1.8}
+.project-subtitle{font-size:16px;color:var(--muted);max-width:520px;line-height:1.8}
 .project-meta{display:flex;flex-direction:column;gap:16px;min-width:200px}
 .meta-item{text-align:right}
 .meta-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.meta-value{font-size:13px;color:var(--text);font-weight:500}
+.meta-value{font-size:15px;color:var(--text);font-weight:500}
 .project-body{display:grid;grid-template-columns:1fr 1fr;gap:48px}
 .project-col-full{grid-column:1/-1}
 .info-block{margin-bottom:36px}
 .info-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .info-label::before{content:'';display:block;width:16px;height:1px;background:currentColor}
-.info-text{font-size:14px;color:var(--text);line-height:1.9;font-weight:300}
+.info-text{font-size:16px;color:var(--text);line-height:1.9;font-weight:300}
 .info-list{list-style:none}
-.info-list li{font-size:13px;color:var(--text);padding:10px 0;border-bottom:1px solid var(--border);padding-left:16px;position:relative;line-height:1.7}
+.info-list li{font-size:15px;color:var(--text);padding:10px 0;border-bottom:1px solid var(--border);padding-left:16px;position:relative;line-height:1.7}
 .info-list li::before{content:'→';position:absolute;left:0;color:var(--muted);font-size:11px}
 .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
 .feature-card{background:var(--surface);border:1px solid var(--border);padding:22px;transition:border-color .25s,transform .25s}
 .feature-card:hover{transform:translateY(-3px)}
 .feature-card-icon{font-size:24px;margin-bottom:12px}
-.feature-card-title{font-size:12px;font-weight:700;color:var(--w);margin-bottom:8px;letter-spacing:.3px}
-.feature-card-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.feature-card-title{font-size:14px;font-weight:700;color:var(--w);margin-bottom:8px;letter-spacing:.3px}
+.feature-card-desc{font-size:14px;color:var(--muted);line-height:1.7}
 .kpi-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:8px}
 .kpi-card{flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);padding:20px;text-align:center}
 .kpi-val{font-family:'Pretendard',sans-serif;font-size:38px;line-height:1;margin-bottom:6px}
-.kpi-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.kpi-desc{font-size:13px;color:var(--muted);line-height:1.5}
 .insight-box{background:linear-gradient(135deg,rgba(74,123,255,.08),rgba(123,92,240,.04));border:1px solid rgba(74,123,255,.2);padding:28px;margin-top:8px;position:relative}
 .insight-box::before{content:'"';position:absolute;top:10px;left:20px;font-family:'Pretendard',sans-serif;font-size:60px;color:rgba(74,123,255,.2);line-height:1}
-.insight-text{font-size:14px;color:var(--text);line-height:1.9;font-weight:400;padding-left:12px}
+.insight-text{font-size:16px;color:var(--text);line-height:1.9;font-weight:400;padding-left:12px}
 
 /* ── PROTOTYPE EMBED ── */
 .proto-section{margin-top:48px}
@@ -115,14 +115,32 @@ section{padding:100px 60px}
 .proj-ai .project-tag{color:var(--a3)}.proj-ai .feature-card:hover{border-color:var(--a3)}.proj-ai .kpi-val{color:var(--a3)}.proj-ai .insight-box{background:linear-gradient(135deg,rgba(255,107,53,.08),rgba(255,107,53,.03));border-color:rgba(255,107,53,.2)}.proj-ai .proto-open-btn:hover{border-color:var(--a3);background:rgba(255,107,53,.08)}
 .proj-lifeport .project-tag{color:var(--a1)}.proj-lifeport .feature-card:hover{border-color:var(--a1)}.proj-lifeport .kpi-val{color:var(--a1)}.proj-lifeport .proto-open-btn:hover{border-color:var(--a1);background:rgba(74,123,255,.08)}
 
+/* ── WHAT I CAN DO ── */
+#cando{background:var(--bg)}
+.cando-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:60px}
+.cando-area{background:var(--bg);padding:44px;transition:background .3s}
+.cando-area:hover{background:rgba(74,123,255,.04)}
+.cando-area-label{font-size:16px;font-weight:700;color:var(--w);margin-bottom:14px;letter-spacing:-.2px}
+.cando-area-desc{font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:20px}
+.cando-list{list-style:none;padding:0;margin:0}
+.cando-list li{font-size:14px;color:var(--text);padding:9px 0;border-bottom:1px solid var(--border);padding-left:18px;position:relative;line-height:1.6}
+.cando-list li::before{content:'→';position:absolute;left:0;color:var(--a1);font-size:12px;top:11px}
+.cando-list li:last-child{border-bottom:none}
+.toolstack{margin-top:48px;padding:36px 44px;border:1px solid var(--border);background:var(--surface)}
+.toolstack-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.toolstack-items{display:flex;flex-wrap:wrap;gap:10px}
+.tool-chip{padding:8px 18px;border:1px solid var(--border);font-size:13px;color:var(--text);background:var(--bg);font-family:'Pretendard',sans-serif;transition:border-color .2s,color .2s}
+.tool-chip:hover{border-color:var(--a1);color:var(--a1)}
+@media(max-width:900px){.cando-grid{grid-template-columns:1fr}.toolstack{padding:28px 24px}}
+
 /* capabilities */
 #capabilities{background:var(--surface)}
 .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin-top:60px;border:1px solid var(--border)}
 .cap-card{background:var(--surface);padding:44px;transition:background .3s}
 .cap-card:hover{background:rgba(74,123,255,.05)}
 .cap-num{font-family:'Pretendard',sans-serif;font-size:52px;line-height:1;color:rgba(74,123,255,.25);margin-bottom:16px}
-.cap-title{font-size:15px;font-weight:700;color:var(--w);margin-bottom:14px}
-.cap-desc{font-size:13px;color:var(--muted);line-height:1.9}
+.cap-title{font-size:17px;font-weight:700;color:var(--w);margin-bottom:14px}
+.cap-desc{font-size:15px;color:var(--muted);line-height:1.9}
 
 /* personal */
 #personal{border-top:1px solid var(--border)}
@@ -134,8 +152,8 @@ section{padding:100px 60px}
 .personal-name-en{font-family:'Pretendard',sans-serif;font-size:11px;color:var(--a1);letter-spacing:2px;margin-top:4px}
 .personal-role-tag{font-family:'Pretendard',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--a4);margin-bottom:20px;display:flex;align-items:center;gap:8px}
 .personal-role-tag::before{content:'';display:block;width:20px;height:1px;background:var(--a4)}
-.personal-headline{font-size:22px;font-weight:700;color:var(--w);line-height:1.5;margin-bottom:24px}
-.personal-bio{font-size:14px;color:var(--muted);line-height:2;margin-bottom:36px}
+.personal-headline{font-size:24px;font-weight:700;color:var(--w);line-height:1.5;margin-bottom:24px}
+.personal-bio{font-size:16px;color:var(--muted);line-height:2;margin-bottom:36px}
 .personal-bio strong{color:var(--text);font-weight:500}
 .personal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
 .personal-tag{font-family:'Pretendard',sans-serif;font-size:10px;letter-spacing:1px;padding:6px 14px;border:1px solid var(--border);color:var(--muted);background:var(--surface)}
@@ -146,7 +164,7 @@ section{padding:100px 60px}
 
 footer{padding:60px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .footer-brand{font-family:'Pretendard',sans-serif;font-size:28px;letter-spacing:3px;color:var(--muted)}
-.footer-quote{font-size:12px;color:var(--muted);max-width:360px;line-height:1.7;text-align:center}
+.footer-quote{font-size:14px;color:var(--muted);max-width:360px;line-height:1.7;text-align:center}
 .footer-copy{font-size:11px;color:var(--muted);font-family:'Pretendard',sans-serif}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -166,6 +184,7 @@ footer{padding:60px;border-top:1px solid var(--border);display:flex;align-items:
     <li><a href="#about">About</a></li>
     <li><a href="#overview">Projects</a></li>
     <li><a href="#capabilities">역량</a></li>
+    <li><a href="#cando">스킬</a></li>
     <li><a href="#personal">Me</a></li>
   </ul>
 </nav>
@@ -234,31 +253,31 @@ footer{padding:60px;border-top:1px solid var(--border);display:flex;align-items:
     <thead><tr><th>Project</th><th>Domain</th><th>Problem</th><th>Key Solution</th><th>Outcome</th></tr></thead>
     <tbody>
       <tr>
-        <td><div class="proj-badge badge-teal">01</div><br><strong style="color:var(--w)">Ringle Biz</strong><br><span style="font-size:11px;color:var(--muted)">공모전 본선 진출</span></td>
-        <td><span style="font-size:12px;color:var(--muted)">에듀테크 / AI</span></td>
-        <td style="font-size:12px">일상 회화 중심 콘텐츠로 비즈니스 실무 영어 니즈 충족 한계</td>
-        <td style="font-size:12px">직무 문서 기반 RAG 학습 + Executive 코칭 모델 설계</td>
+        <td><div class="proj-badge badge-teal">01</div><br><strong style="color:var(--w)">Ringle Biz</strong><br><span style="font-size:13px;color:var(--muted)">공모전 본선 진출</span></td>
+        <td><span style="font-size:14px;color:var(--muted)">에듀테크 / AI</span></td>
+        <td style="font-size:14px">일상 회화 중심 콘텐츠로 비즈니스 실무 영어 니즈 충족 한계</td>
+        <td style="font-size:14px">직무 문서 기반 RAG 학습 + Executive 코칭 모델 설계</td>
         <td><span class="kpi-pill">SOM 연 2,000억</span></td>
       </tr>
       <tr>
-        <td><div class="proj-badge badge-purple">02</div><br><strong style="color:var(--w)">RE:COVER</strong><br><span style="font-size:11px;color:var(--muted)">B2B SaaS / EAP</span></td>
-        <td><span style="font-size:12px;color:var(--muted)">헬스케어 SaaS</span></td>
-        <td style="font-size:12px">사내 상담 낙인 우려(B2C) + 조직 위기 감지 지연(B2B)</td>
-        <td style="font-size:12px">Zero-Knowledge 익명성 + 관리자용 위기 감지 대시보드</td>
+        <td><div class="proj-badge badge-purple">02</div><br><strong style="color:var(--w)">RE:COVER</strong><br><span style="font-size:13px;color:var(--muted)">B2B SaaS / EAP</span></td>
+        <td><span style="font-size:14px;color:var(--muted)">헬스케어 SaaS</span></td>
+        <td style="font-size:14px">사내 상담 낙인 우려(B2C) + 조직 위기 감지 지연(B2B)</td>
+        <td style="font-size:14px">Zero-Knowledge 익명성 + 관리자용 위기 감지 대시보드</td>
         <td><span class="kpi-pill">TAM 61조원</span></td>
       </tr>
       <tr>
-        <td><div class="proj-badge badge-orange">03</div><br><strong style="color:var(--w)">AI 쇼핑 호스트</strong><br><span style="font-size:11px;color:var(--muted)">studio.ai</span></td>
-        <td><span style="font-size:12px;color:var(--muted)">이커머스 / AI SaaS</span></td>
-        <td style="font-size:12px">중소 셀러 마케팅 영상 제작·글로벌화 고비용 구조</td>
-        <td style="font-size:12px">URL 입력 → 스크립트 자동생성 → 아바타 영상 즉시 렌더링</td>
+        <td><div class="proj-badge badge-orange">03</div><br><strong style="color:var(--w)">AI 쇼핑 호스트</strong><br><span style="font-size:13px;color:var(--muted)">studio.ai</span></td>
+        <td><span style="font-size:14px;color:var(--muted)">이커머스 / AI SaaS</span></td>
+        <td style="font-size:14px">중소 셀러 마케팅 영상 제작·글로벌화 고비용 구조</td>
+        <td style="font-size:14px">URL 입력 → 스크립트 자동생성 → 아바타 영상 즉시 렌더링</td>
         <td><span class="kpi-pill">비용 90% 절감</span></td>
       </tr>
       <tr>
-        <td><div class="proj-badge badge-blue">04</div><br><strong style="color:var(--w)">LifePort</strong><br><span style="font-size:11px;color:var(--muted)">핀테크 / 마이데이터</span></td>
-        <td><span style="font-size:12px;color:var(--muted)">금융 / 자산관리</span></td>
-        <td style="font-size:12px">파편화된 금융 정보로 인한 자산 상태 및 은퇴 계획 가시성 부족</td>
-        <td style="font-size:12px">마이데이터 기반 생애 자산 시뮬레이션 + AI 수명 예측</td>
+        <td><div class="proj-badge badge-blue">04</div><br><strong style="color:var(--w)">LifePort</strong><br><span style="font-size:13px;color:var(--muted)">핀테크 / 마이데이터</span></td>
+        <td><span style="font-size:14px;color:var(--muted)">금융 / 자산관리</span></td>
+        <td style="font-size:14px">파편화된 금융 정보로 인한 자산 상태 및 은퇴 계획 가시성 부족</td>
+        <td style="font-size:14px">마이데이터 기반 생애 자산 시뮬레이션 + AI 수명 예측</td>
         <td><span class="kpi-pill">1,040만명 TAM</span></td>
       </tr>
     </tbody>
@@ -631,6 +650,72 @@ footer{padding:60px;border-top:1px solid var(--border);display:flex;align-items:
       <div class="cap-num">04</div>
       <div class="cap-title">기획을 직접 구현하는 프로토타이핑</div>
       <div class="cap-desc">기획 아이디어를 실제 작동하는 프로토타입으로 직접 구현하고 검증. 기획과 구현 사이의 간극을 줄이고 빠른 피드백 루프를 형성합니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I CAN DO -->
+<div class="divider"></div>
+<section id="cando">
+  <div class="section-label">Skills &amp; Tools</div>
+  <div class="section-title">WHAT I<br>CAN DO</div>
+  <div class="cando-grid reveal">
+
+    <div class="cando-area">
+      <div class="cando-area-label">🗂 서비스 기획</div>
+      <div class="cando-area-desc">아이디어 발굴부터 서비스 구조 설계까지 전 과정을 주도합니다. 문제 정의 → 리서치 → 솔루션 설계 → 기능 명세까지 기획 전반을 직접 담당할 수 있습니다.</div>
+      <ul class="cando-list">
+        <li>문제 정의 및 시장 분석 (TAM/SAM/SOM)</li>
+        <li>유저 리서치 및 페르소나 도출</li>
+        <li>서비스 플로우 / 기능 명세 작성</li>
+        <li>비즈니스 모델 설계 및 수익 구조 기획</li>
+      </ul>
+    </div>
+
+    <div class="cando-area">
+      <div class="cando-area-label">💻 프로토타이핑 &amp; 개발</div>
+      <div class="cando-area-desc">기획한 아이디어를 직접 작동하는 형태로 구현합니다. 개발자에게 전달하기 전, 실제 동작하는 프로토타입을 스스로 만들어 빠르게 검증합니다.</div>
+      <ul class="cando-list">
+        <li>Python — 데이터 처리, 자동화 스크립트, 간단한 백엔드 로직 구현</li>
+        <li>Firebase — 실시간 DB 연동, 데이터 입출력, 인증 기본 구성</li>
+        <li>HTML/CSS/JS — 실제 작동하는 인터랙티브 프로토타입 직접 제작</li>
+        <li>프로젝트 4개 모두 직접 구현한 라이브 프로토타입 보유</li>
+      </ul>
+    </div>
+
+    <div class="cando-area">
+      <div class="cando-area-label">📋 문서화 &amp; 협업</div>
+      <div class="cando-area-desc">기획 내용을 팀이 실행 가능한 문서로 정리합니다. Notion을 중심으로 기획서, 스펙 문서, 리서치 보고서 등을 체계적으로 작성합니다.</div>
+      <ul class="cando-list">
+        <li>Notion — 기획서 작성, 스프린트 관리, 리서치 아카이빙</li>
+        <li>데이터 기반 의사결정 근거 문서화</li>
+        <li>기능 명세서 / 플로우차트 / 와이어프레임 레벨 설계</li>
+      </ul>
+    </div>
+
+    <div class="cando-area">
+      <div class="cando-area-label">🤖 AI 프로덕트 설계</div>
+      <div class="cando-area-desc">AI 기술을 서비스에 녹이는 기획을 합니다. 단순한 기능 나열이 아니라, AI가 어떤 사용자 문제를 어떤 방식으로 해결하는지 서비스 시나리오 수준으로 설계합니다.</div>
+      <ul class="cando-list">
+        <li>RAG 기반 학습 시스템 서비스화 (Ringle Biz)</li>
+        <li>보이스 클로닝 + 아바타 영상 생성 파이프라인 기획 (AI 쇼핑 호스트)</li>
+        <li>마이데이터 + AI 수명예측 시뮬레이션 설계 (LifePort)</li>
+        <li>AI와 전문가를 결합한 하이브리드 케어 구조 설계 (RE:COVER)</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="toolstack reveal">
+    <div class="toolstack-label">TOOL STACK</div>
+    <div class="toolstack-items">
+      <div class="tool-chip">Python</div>
+      <div class="tool-chip">Firebase</div>
+      <div class="tool-chip">HTML / CSS / JS</div>
+      <div class="tool-chip">Notion</div>
+      <div class="tool-chip">GitHub</div>
+      <div class="tool-chip">ChatGPT / Claude</div>
+      <div class="tool-chip">Figma (기본)</div>
     </div>
   </div>
 </section>
